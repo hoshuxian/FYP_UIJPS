@@ -183,20 +183,20 @@ function displayjob(Request $req,$post_id)
         ->select('posts.job_salary', 'posts.job_title', 'posts.job_venue', 'posts.job_description', 'posts.job_requirement', 'posts.job_category', 'posts.job_benefit', 'posts.job_applynumber', 'posts.position_available', 'posts.hired', 'employers.company_description', 'employers.company_size', 'employers.reg_no', 'employers.company_name', 'employers.id', 'employers.company_logo', 'posts.post_id')
         ->where('posts.post_id', '=', $post_id)->get();
         return view('\Student\displayjob', ['deta' => $deta])->with('disable',true);
-    }else { 
-        /*if($req->session()->has('result')){
+    }else if($req->session()->has('result')){
             $result=session('result.0.id');
             $apply = jobapply::where('post_id', '=', $post_id)->first();
-            if($apply->id === $result){
-                $deta = DB::table('employers')->join('posts', 'posts.id', '=', 'employers.id')
-                ->select('posts.job_salary', 'posts.job_title', 'posts.job_venue', 'posts.job_description', 'posts.job_requirement', 'posts.job_category', 'posts.job_benefit', 'posts.job_applynumber', 'posts.position_available', 'posts.hired', 'employers.company_description', 'employers.company_size', 'employers.reg_no', 'employers.company_name', 'employers.id', 'employers.company_logo', 'posts.post_id')
-                ->where('posts.post_id', '=', $post_id)->get();
-                return view('\Student\displayjob', ['deta' => $deta])->with('disable',true);
-            }else{*/
+            if($apply === null){
                 $deta = DB::table('employers')->join('posts', 'posts.id', '=', 'employers.id')
                 ->select('posts.job_salary', 'posts.job_title', 'posts.job_venue', 'posts.job_description', 'posts.job_requirement', 'posts.job_category', 'posts.job_benefit', 'posts.job_applynumber', 'posts.position_available', 'posts.hired', 'employers.company_description', 'employers.company_size', 'employers.reg_no', 'employers.company_name', 'employers.id', 'employers.company_logo', 'posts.post_id')
                 ->where('posts.post_id', '=', $post_id)->get();
                 return view('\Student\displayjob', ['deta' => $deta]);
+            }else if($apply->id === $result){
+                $deta = DB::table('employers')->join('posts', 'posts.id', '=', 'employers.id')
+                ->select('posts.job_salary', 'posts.job_title', 'posts.job_venue', 'posts.job_description', 'posts.job_requirement', 'posts.job_category', 'posts.job_benefit', 'posts.job_applynumber', 'posts.position_available', 'posts.hired', 'employers.company_description', 'employers.company_size', 'employers.reg_no', 'employers.company_name', 'employers.id', 'employers.company_logo', 'posts.post_id')
+                ->where('posts.post_id', '=', $post_id)->get();
+                return view('\Student\displayjob', ['deta' => $deta])->with('disable',true);
+        }
         }
     }
 
