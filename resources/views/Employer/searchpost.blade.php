@@ -214,7 +214,6 @@
 </form>
 
 @foreach($deta as $detaa)
-<form action="/createjobpost" method="GET" >
 <div class="container4">
 <a href="/displaypost/{{ $detaa->post_id}}"><div class="container3">
 	<div class="name">
@@ -243,8 +242,9 @@
             </div>
         </section>
 <br><br>
-<div class=" mt-1">
+<a href="createjobpost" class=" mt-1">
 <input type="submit" name="new" value="Create New Post"></a>
+
 </div>
 <br><br><br>
 </div>

@@ -80,6 +80,42 @@ public function stdfeedbacklist(request $request)
     
 }
 
+function displaystdfeedback()
+{
+    $deta = stdfeedback::all();
+    return view('\Staff\displaystdfeedback',['deta'=>$deta]);
+}
+
+public function displaystdfeedbacklist(request $request)
+{
+   
+    $deta = $request->input('deta'); 
+    $deta = stdfeedback::select('rate','comment','std_name','company_name')->where('rate','LIKE', '%' . $deta . '%')->orwhere('comment','LIKE', '%' . $deta . '%')->orwhere('std_name','LIKE', '%' . $deta . '%')->orwhere('company_name','LIKE', '%' . $deta . '%')->get();
+    if (count ( $deta ) > 0)
+    return view('\Staff\displaystdfeedback', ['deta' => $deta])->with('successMsg','Results Found !');
+    else
+    return view ('\Staff\displaystdfeedback', ['deta' => $deta])->with('FailedMsg','No Details found. Try to search again !' );		
+    
+}
+
+function displayempfeedback()
+{
+    $deta = empfeedback::all();
+    return view('\Staff\displayempfeedback',['deta'=>$deta]);
+}
+
+public function displayempfeedbacklist(request $request)
+{
+   
+    $deta = $request->input('deta'); 
+    $deta = empfeedback::select('rate','comment','std_name','company_name')->where('rate','LIKE', '%' . $deta . '%')->orwhere('comment','LIKE', '%' . $deta . '%')->orwhere('std_name','LIKE', '%' . $deta . '%')->orwhere('company_name','LIKE', '%' . $deta . '%')->get();
+    if (count ( $deta ) > 0)
+    return view('\Staff\displayempfeedback', ['deta' => $deta])->with('successMsg','Results Found !');
+    else
+    return view ('\Staff\displayempfeedback', ['deta' => $deta])->with('FailedMsg','No Details found. Try to search again !' );		
+    
+}
+
 public function select(Request $req)
 {
     if($req->session()->has('result')){

@@ -196,4 +196,29 @@ function eventedit(Request $req)
         $var->update();
         return redirect('filterevent')->with('successMsg','Event Successful updated !');
         }
+
+        function displayeventlist()
+        {
+            $deta = Event::all();
+            return view('\Staff\displayeventlist',['deta'=>$deta]);
+        }
+        
+        public function searcheventlist(request $request)
+        {
+           
+            $deta = $request->input('deta'); 
+            $deta = event::select('*')->where('event_name','LIKE', '%' . $deta . '%')->orwhere('event_description1','LIKE', '%' . $deta . '%')->get();
+            if (count ( $deta ) > 0)
+            return view('\Staff\displayeventlist', ['deta' => $deta])->with('successMsg','Results Found !');
+            else
+            return view ('\Staff\displayeventlist', ['deta' => $deta])->with('FailedMsg','No Details found. Try to search again !' );		
+            
+        }
+        
+        function viewevent($id)
+        
+        {
+            $result = event::select('*')->where('id', '=', $id)->get();
+            return view('\Staff\showevent', ['result' => $result]);
+        }
 }

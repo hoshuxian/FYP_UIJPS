@@ -35,6 +35,18 @@
   margin-left: 3%;
   margin-bottom: 15px;
   width: 120px;
+  background: white;
+  border: 3px solid #094b65;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 10px;
+}
+
+.staff{
+    height: 45px;
+  margin-left: 3%;
+  margin-bottom: 15px;
+  width: 120px;
   background: #094b65;
   border: 3px solid #094b65;
   font-size: 18px;
@@ -43,17 +55,6 @@
   color: white;
 }
 
-.staff{
-    height: 45px;
-  margin-left: 3%;
-  margin-bottom: 15px;
-  width: 120px;
-  background: white;
-  border: 3px solid #094b65;
-  font-size: 18px;
-  font-weight: 500;
-  border-radius: 10px;
-}
 
 img{
     margin-top: 10px;
@@ -112,12 +113,12 @@ table th,td{
     margin-left:30px;
 }
 
-.student:hover{
+.employer:hover{
     background-color: #094b65;
   color: white;
 }
 
-.staff:hover{
+.student:hover{
     background-color: #094b65;
   color: white;
 }
@@ -252,8 +253,8 @@ table th,td{
         <p>Portal System</p>
     </div>
     <button onclick="location.href='{{ url('/searchstdprofile') }}'"type="submit" class="student" value="student"> STUDENT</button>
-    <button type="submit" class="employer" value="employer">EMPLOYER</button>
-    <button onclick="location.href='{{ url('/searchstaff') }}'"type="submit" class="staff" value="staff"> STAFF</button>
+    <button onclick="location.href='{{ url('/searchempprofile') }}'" type="submit" class="employer" value="employer">EMPLOYER</button>
+    <button type="submit" class="staff" value="staff">STAFF</button>
 </div>
 
 <div class="items-controller">
@@ -268,11 +269,11 @@ table th,td{
                 <h4>Per Page</h4>
             </div>
 <div class=search2>
-    <form action="/searchempprofile/search" method="GET" role="search">
+    <form action="/searchstaff/search" method="GET" role="search">
         <div class="input-group">
             <button class="searchbtn" type="submit" title="Search projects"><ion-icon name="search-outline"></ion-icon></button>
             <input type="text" class="form-control mr-2" name="deta" placeholder="Search......" id="deta">
-            <a href="/searchempprofile">&emsp;<button  class="refreshbtn" type="button" title="Refresh page"><ion-icon name="repeat-outline"></ion-icon></button></a>
+            <a href="/searchstaff">&emsp;<button  class="refreshbtn" type="button" title="Refresh page"><ion-icon name="repeat-outline"></ion-icon></button></a>
         </div>
                     @if(!empty($successMsg))
                         <div class="alert alert-success"> {{ $successMsg }}</div>
@@ -288,21 +289,21 @@ table th,td{
 <table>
   <thead>
 <tr>
-	<th>Reg. No</th>
+	<th>No</th>
 	<th>Name</th>
 	<th>Email</th>
-	<th>Office Number</th>
+	<th>Phone Number</th>
     <th>Action</th>
   </tr>
 </thead>
 <tbody>
 @foreach($deta as $detaa)
   <tr>
-  <td>{{$detaa->reg_no}}</td>
-	<td >{{$detaa->company_name}}</td>
-    <td>{{$detaa->company_email}}</td>
-    <td >{{$detaa->company_officenum}}</td>
-    <td><a href="/displayempprofile/{{ $detaa->reg_no}}"><button type="button" style="background-color: white; border: 1px solid white;" > <ion-icon name="eye-outline"></ion-icon></button></a> &emsp;<a href="/searchempprofile/{{ $detaa->reg_no}}"><button type="button" style="background-color: white; border: 1px solid white;" onclick="return confirm('Are you sure?This record and it`s details will be permanantly deleted!')"><ion-icon name="trash-outline"></ion-icon></button></a></td>
+  <td>{{ $loop->iteration }}</td>
+	<td >{{$detaa->staff_name}}</td>
+    <td>{{$detaa->staff_email}}</td>
+    <td >{{$detaa->staff_phonenum}}</td>
+    <td><a href="/displaystaff/{{ $detaa->id}}"><button type="button" style="background-color: white; border: 1px solid white;" > <ion-icon name="eye-outline"></ion-icon></button></a> &emsp;<a href="/searchstaff/{{ $detaa->id}}"><button type="button" style="background-color: white; border: 1px solid white;" onclick="return confirm('Are you sure?This record and it`s details will be permanantly deleted!')"><ion-icon name="trash-outline"></ion-icon></button></a></td>
   </tr>
       
   @endforeach
@@ -324,7 +325,7 @@ table th,td{
             </div>
         </section>
 <br><br>
-<a href="createempprofile" class=" mt-1">
+<a href="createstaff" class=" mt-1">
 <input type="submit" name="new" value="Create New Profile"></a>
 <br><br><br>
 </div>

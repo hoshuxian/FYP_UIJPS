@@ -182,15 +182,28 @@ form img{
     padding-left: 10px;
     color: #cc0000;
 }
+
+.emp_pic{
+  width:150px;
+  height:150px; 
+  float:left;
+  border-radius:50%;
+  margin-right:25px;
+  
+}
+
 </style>
 <div class="container2">
 <form action="/editemp" method='POST'enctype="multipart/form-data">
 {{ csrf_field() }}
 @foreach(Session::get('result') as $detaa)
 <input type="hidden" class="text" placeholder="Comapny's ID" value="{{ $detaa->id}}"name="id" >
-
-  <img src="{{$detaa->company_logo}}"style="width:150px;height:150px; float:left;border-radius:50%;margin-right:25px;border;" name ="image" required>
-    <br><br><input type ="file" name="image" value="{{ $detaa->company_logo}}" id="image" required>
+@if($detaa->company_logo)
+<img src="{{$detaa->company_logo}}" name ="image" class="emp_pic" required>
+@else
+    <img class="emp_pic" src="/nologo.png" name="image"/>
+@endif
+<br><br><input type ="file" name="image" value="{{ $detaa->company_logo}}" id="image" required>
     <div class="hr3">
     <hr>
     </div>

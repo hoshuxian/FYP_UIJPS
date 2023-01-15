@@ -313,7 +313,6 @@ function display(Request $req,$post_id,$id)
 
 function hired(Request $req,$post_id,$id)
 {
-    $deta =  DB::table('posts')->select('post_id')->where('post_id','=',$post_id)->increment('hired');
 
     $var = new joboffer;
     if($req->session()->has('hire')){
@@ -357,6 +356,8 @@ function displayoffer($post_id)
 
 function accept(Request $req,$post_id)
 {
+    $deta =  DB::table('posts')->select('post_id')->where('post_id','=',$post_id)->increment('hired');
+    
     if($req->session()->has('result')){
         $result=session('result.0.id');
         $deta = joboffer::Select('id')->where('post_id', '=', $post_id)->where('sid','=',$result)->get();
@@ -396,6 +397,37 @@ function displayalllist(Request $req,$post_id)
         ->select('posts.job_salary', 'posts.job_title', 'posts.job_venue', 'posts.job_description', 'posts.job_requirement', 'posts.job_category', 'posts.job_benefit','posts.job_applynumber','posts.hired','posts.position_available', 'employers.company_description', 'employers.company_size', 'employers.reg_no', 'posts.post_id')
         ->where('posts.post_id', '=', $post_id)->get();
     return view('\Admin\displayjobpost', ['deta' => $deta]);
+}
+
+function alljoblist()
+    {
+
+        $deta = DB::table('employers')->join('posts', 'posts.id', '=', 'employers.id')
+        ->select('posts.job_salary', 'posts.job_title', 'posts.job_venue', 'posts.job_benefit', 'posts.job_applynumber', 'employers.company_name', 'employers.company_logo', 'posts.post_id')->get();
+    return view('\Staff\viewjobpost', ['deta' => $deta]);
+    }
+
+    public function searchjoblist(request $request)
+{
+   
+    $deta = $request->input('deta'); 
+    $deta = DB::table('employers')->join('posts', 'posts.id', '=', 'employers.id')
+    ->select('posts.job_salary', 'posts.job_title', 'posts.job_venue', 'posts.job_benefit', 'posts.job_applynumber', 'employers.company_name', 'employers.company_logo', 'posts.post_id')
+    ->where('posts.job_title','LIKE', '%' . $deta . '%')->orwhere('posts.job_salary','LIKE', '%' . $deta . '%')->orwhere('posts.job_venue','LIKE', '%' . $deta . '%')->orwhere('employers.company_name','LIKE', '%' . $deta . '%')->get();
+    if (count ( $deta ) > 0)
+    return view('\Staff\viewjobpost', ['deta' => $deta])->with('successMsg','Results Found !');
+    else
+    return view ('\Staff\viewjobpost', ['deta' => $deta])->with('FailedMsg','No Details found. Try to search again !' );		
+    
+}
+
+function showjob(Request $req,$post_id)
+
+{
+        $deta = DB::table('employers')->join('posts', 'posts.id', '=', 'employers.id')
+        ->select('posts.job_salary', 'posts.job_title', 'posts.job_venue', 'posts.job_description', 'posts.job_requirement', 'posts.job_category', 'posts.job_benefit','posts.job_applynumber','posts.hired','posts.position_available', 'employers.company_description', 'employers.company_size', 'employers.reg_no', 'posts.post_id')
+        ->where('posts.post_id', '=', $post_id)->get();
+    return view('\Staff\showjob', ['deta' => $deta]);
 }
 
 }

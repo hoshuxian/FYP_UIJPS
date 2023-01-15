@@ -1,4 +1,4 @@
-@extends ('masterE')
+@extends ('masterStaff')
 @section('content')
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
     margin-bottom: 3%;
     text-align: center;
     object-fit: cover;
-    margin-top: -3%;
+    margin-top: -24%;
     border-radius: 20px;
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     backdrop-filter: blur(10px);
@@ -46,7 +46,7 @@ form{
 }
 button{
   height: 45px;
-  margin-left: 3%;
+  margin-left: 66%;
   margin-bottom: 15px;
   width: 120px;
   background: white;
@@ -65,7 +65,7 @@ button:hover{
 </style>
 <div class="box">
 @foreach($result as $detaa)
-            <form action="/editevent/{{ $detaa->id}}" method='get'>
+            <form action="#" method='get'>
             @csrf
             <table>
             <tr>
@@ -103,11 +103,11 @@ button:hover{
 
             </table>
             <br><br>
-@endforeach
-</div>
-<button  type="submit" style="margin-left:70%;">EDIT</button> <button  onclick="location.href='{{ url('/filterevent') }}'" type="button">BACK</button>
+        <button  onclick="location.href='{{ url('/displayeventlist') }}'" type="button">BACK</button>
         <br><br>
 </form>
+@endforeach
+</div>
 </html>
 
 @endsection

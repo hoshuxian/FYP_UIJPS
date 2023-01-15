@@ -7,7 +7,7 @@
         <style>
 .choose{
     border: 6px solid #094b65;
-    width: 400px;
+    width: 500px;
     height: 200px;
     margin-left: 35%;
     margin-bottom: 10%;
@@ -43,6 +43,17 @@
   border-radius: 10px;
 }
 
+.staff{
+    height: 45px;
+  margin-left: 3%;
+  margin-bottom: 15px;
+  width: 120px;
+  background: white;
+  border: 3px solid #094b65;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 10px;
+}
 
 img{
     margin-top: 10px;
@@ -55,7 +66,7 @@ img{
     transform: rotate(90deg);
     width: 15%;
     object-fit: cover;
-    margin-top: -15%;
+    margin-top: -12%;
     margin-left: 40%;
     margin-bottom: 15%;
     height: 0.5px;
@@ -102,6 +113,11 @@ table th,td{
 }
 
 .employer:hover{
+    background-color: #094b65;
+  color: white;
+}
+
+.staff:hover{
     background-color: #094b65;
   color: white;
 }
@@ -236,6 +252,7 @@ table th,td{
     </div>
     <button type="submit" class="student" value="student"> STUDENT</button>
     <button onclick="location.href='{{ url('/searchempprofile') }}'" type="submit" class="employer" value="employer">EMPLOYER</button>
+    <button onclick="location.href='{{ url('/searchstaff') }}'" type="submit" class="staff" value="staff">STAFF</button>
 </div>
 
 <div class="items-controller">

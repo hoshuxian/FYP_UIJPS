@@ -120,6 +120,11 @@ Route::get('/empfeedback', 'App\Http\Controllers\FeedbackController@select2');
 Route::get('/stdsearchfeedback', 'App\Http\Controllers\FeedbackController@viewstdfeedback');
 Route::get('/stdsearchfeedback/search', 'App\Http\Controllers\FeedbackController@stdfeedbacklist');
 
+Route::get('/displaystdfeedback', 'App\Http\Controllers\FeedbackController@displaystdfeedback');
+Route::get('/displaystdfeedback/search', 'App\Http\Controllers\FeedbackController@displaystdfeedbacklist');
+Route::get('/displayempfeedback', 'App\Http\Controllers\FeedbackController@displayempfeedback');
+Route::get('/displayempfeedback/search', 'App\Http\Controllers\FeedbackController@displayempfeedbacklist');
+
 //Manage search company Profile
 Route::get('/searchcompany', 'App\Http\Controllers\UserController@viewcompanylist');
 Route::get('/searchcompany/search', 'App\Http\Controllers\UserController@companylist');
@@ -129,6 +134,7 @@ Route::get('/displaycompanyprofile/{reg_no}', 'App\Http\Controllers\UserControll
 Route::get('/searchstudent', 'App\Http\Controllers\UserController@viewstdlist');
 Route::get('/searchstudent/search', 'App\Http\Controllers\UserController@stdlist');
 Route::get('/displaystudentprofile/{std_matric}', 'App\Http\Controllers\UserController@displaystudentprofile');
+
 
 //Manage Event
 //admin
@@ -156,6 +162,10 @@ Route::get('/showevent/{id}', 'App\Http\Controllers\EventController@showevent');
 Route::get('/editevent/{id}', 'App\Http\Controllers\EventController@editevent');
 Route::post('/eventedit', 'App\Http\Controllers\EventController@eventedit');
 
+Route::get('/displayeventlist', 'App\Http\Controllers\EventController@displayeventlist');
+Route::get('/displayeventlist/search', 'App\Http\Controllers\EventController@searcheventlist');
+Route::get('/showevent/{id}', 'App\Http\Controllers\EventController@viewevent');
+
 //Manage Internship Job Post
 Route::get('/createjobpost', function () {
     return view('/Employer/createjobpost');
@@ -173,7 +183,7 @@ Route::get('/displayallpost/{post_id}', 'App\Http\Controllers\PostController@dis
 
 Route::get('/searchjob', 'App\Http\Controllers\PostController@viewjoblist');
 Route::post('/apply/{post_id}', 'App\Http\Controllers\PostController@apply');
-//Route::get('/searchjob/search', 'App\Http\Controllers\PostController@joblist');
+Route::get('/searchjob/search', 'App\Http\Controllers\PostController@joblist');
 Route::get('/displayjob/{post_id}', 'App\Http\Controllers\PostController@displayjob');
 
 Route::get('/displaystudentapply/{post_id}', 'App\Http\Controllers\PostController@displaystudentapply');
@@ -191,6 +201,10 @@ Route::get('/viewjobpost', 'App\Http\Controllers\PostController@viewlist');
 Route::get('/viewjobpost/search', 'App\Http\Controllers\PostController@alllist');
 Route::get('/displayjobpost/{post_id}', 'App\Http\Controllers\PostController@displayalllist');
 
+Route::get('/viewjobpost', 'App\Http\Controllers\PostController@alljoblist');
+Route::get('/viewjobpost/search', 'App\Http\Controllers\PostController@searchjoblist');
+Route::get('/showjob/{post_id}', 'App\Http\Controllers\PostController@showjob');
+
 //Blacklist
 Route::get('/blacklist', function () {
     return view('/Admin/blacklist');
@@ -202,8 +216,30 @@ Route::get('/searchblacklist/{id}', 'App\Http\Controllers\UserController@deleteb
 Route::get('/updateblacklist/{id}', 'App\Http\Controllers\UserController@updateblacklist');
 Route::post('/blacklistupdate', 'App\Http\Controllers\UserController@blacklistupdate');
 
+Route::get('/displayblacklist', 'App\Http\Controllers\UserController@displayblacklist');
+Route::get('/displayblacklist/search', 'App\Http\Controllers\UserController@searchblacklist');
+
 //Rate
 Route::get('/ratingform', function () {
     return view('/Student/ratingform');
 });
 Route::post('/rating', 'App\Http\Controllers\UserController@rating');
+
+//Manage Staff
+Route::get('/createstaff', function () {
+    return view('/Admin/createstaff');
+});
+Route::post('/createnewstaff', 'App\Http\Controllers\UserController@createnewstaff');
+Route::get('/searchstaff', 'App\Http\Controllers\UserController@viewstafflist');
+Route::get('/searchstaff/search', 'App\Http\Controllers\UserController@stafflist');
+Route::get('/searchstaff/{id}', 'App\Http\Controllers\UserController@deletestaff');
+Route::get('/displaystaff/{id}', 'App\Http\Controllers\UserController@displaystaff');
+Route::get('/updatestaff/{id}', 'App\Http\Controllers\UserController@updatestaff');
+Route::post('/staffupdate', 'App\Http\Controllers\UserController@staffupdate');
+
+Route::get('/myprofile', function () {
+    return view('/Staff/myprofile');
+});
+Route::get('/myprofile/{id}', 'App\Http\Controllers\UserController@myprofile');
+Route::get('/updatestafflist/{id}', 'App\Http\Controllers\UserController@updatestafflist');
+Route::post('/stafflistupdate', 'App\Http\Controllers\UserController@stafflistupdate');

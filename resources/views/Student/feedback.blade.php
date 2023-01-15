@@ -229,8 +229,8 @@ span.prefix {
 <form action="/submitfeedback" method="post" enctype="multipart/form-data">
 <p style="color:black;margin-top: -5%;margin-left: 20%;font-size: 24px;">Company: &emsp;
 <select style="width: 60%;height: 30px;" id="companyname" name="companyname" required>
-@foreach($deta as $detaa)
 <option value="Select">Select Company name</option>
+@foreach($deta as $detaa)
 <option value="{{$detaa->company_name}}">{{ $detaa->company_name }}</option>
  @endforeach
     </select>

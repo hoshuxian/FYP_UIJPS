@@ -168,51 +168,35 @@ button:hover{
 <img class="background_img"src="/stdbackground.jpg">
 <div class="myprofile">
 @foreach($result as $detaa)
-<form action="/updatestdprofile/{{ $detaa->id}} " method='get'>
+<form action="/updatestaff/{{ $detaa->id}} " method='get'>
 
-@if($detaa->std_pic)
-    <img class="std_pic" src="{{$detaa->std_pic}}" name="image">
+@if($detaa->staff_pic)
+    <img class="std_pic" src="{{$detaa->staff_pic}}" name="image">
 @else
     <img class="std_pic" src="/default.jpg" name="image"/>
 @endif
 
-<h2 class="profile" style="margin-left: -6%;margin-top: -10%;"> MY PROFILE<span style ="font-size: 90px;color: red;margin-left:40%;">{{$detaa->standard}}</span></h2>
-        <p style ="font-size:20px;color: red;margin-left:35%;margin-top: -5%;margin-bottom: 3%;">Level</p>
+<h2 class="profile"> MY PROFILE</h2>
         <div class="design1">
             <div class="design2">
             @csrf
     <table>
 <tr>
-<th>{{$detaa->std_name}}<br><br></th>
+<th>{{$detaa->staff_name}}<br><br></th>
 </tr>
 <tr>
-<th>{{$detaa->std_matric}}<br><br></th>
+<th>{{$detaa->staff_phonenum}}<br><br></th>
 </tr>
 <tr>
-<th>{{$detaa->std_address}}<br><br></th>
+<th>{{$detaa->staff_email}}<br><br></th>
 </tr>
 <tr>
-<th>{{$detaa->std_phonenum}}<br><br></th>
-</tr>
-<tr>
-<th>{{$detaa->std_email}}<br><br></th>
-</tr>
-<tr>
-<th>{{$detaa->std_faculty}}<br><br></th>
-</tr>
-<tr>
-<th>{{$detaa->std_description}}<br><br></th>
+<th>{{$detaa->staff_faculty}}<br><br></th>
 </tr>
 
 </table>
             </div>
         </div>
-        <h2 class="resume"> RESUME</h2>
-        @if($detaa->resume)
-        <img src="{{$detaa->resume}}" name="image" class="resume_pic">
-@else
-    <img class="resume_pic" src="/nofile.png" name="image"/>
-@endif
 @endforeach
     </div>
 </div>
@@ -220,7 +204,7 @@ button:hover{
 
 <br><br>
 <button type="submit" value="edit" style="margin-left:70%;">EDIT</button>
-<a href='/searchstdprofile' type="submit"value="Back" class="button">BACK</a>
+<a href='/searchstaff' type="submit"value="Back" class="button">BACK</a>
 <br><br>
 </form>
 </html>

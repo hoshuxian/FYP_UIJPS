@@ -1,82 +1,14 @@
-@extends ('masterA')
+@extends ('masterStaff')
 @section('content')
-
 
 <!DOCTYPE html>
     <html>
         <style>
-.choose{
-    border: 6px solid #094b65;
-    width: 500px;
-    height: 200px;
-    margin-left: 35%;
-    margin-bottom: 10%;
-    text-align: center;
-    object-fit: cover;
-    margin-top: -24%;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-}
-
-.student{
-    height: 45px;
-  margin-left: 3%;
-  margin-bottom: 15px;
-  width: 120px;
-  background: white;
-  border: 3px solid #094b65;
-  font-size: 18px;
-  font-weight: 500;
-  border-radius: 10px;
-}
-
-.employer{
-    height: 45px;
-  margin-left: 3%;
-  margin-bottom: 15px;
-  width: 120px;
-  background: #094b65;
-  border: 3px solid #094b65;
-  font-size: 18px;
-  font-weight: 500;
-  border-radius: 10px;
-  color: white;
-}
-
-.staff{
-    height: 45px;
-  margin-left: 3%;
-  margin-bottom: 15px;
-  width: 120px;
-  background: white;
-  border: 3px solid #094b65;
-  font-size: 18px;
-  font-weight: 500;
-  border-radius: 10px;
-}
-
-img{
-    margin-top: 10px;
-  margin-left: -45%;
-  margin-bottom: 15px;
-}
-
-.choose2{
-    border: 2px solid black;
-    transform: rotate(90deg);
-    width: 15%;
-    object-fit: cover;
-    margin-top: -12%;
-    margin-left: 40%;
-    margin-bottom: 15%;
-    height: 0.5px;
-}
-
-.title{
-    object-fit: cover;
-    margin-top: -20%;
-    margin-left: 40%;
-    margin-bottom: 15%;
+table th,td{
+  height:25px;
+  text-align:left;
+  border: 2px solid #094b65;
+  padding:5px;
 }
 
 table {
@@ -88,38 +20,8 @@ table {
     margin-top: 12px;
 }
 
-table th,td{
-  border: 2px solid #094b65;
-  height:25px;
-  text-align:center;
-}
-
-.mt-1 input:hover {
-    background-color: #094b65;
-  color: white;
-}
-
-.mt-1 input{
-    width:150px;
-  margin-left:70%;
-  border-radius:8px;
-  background-color: white; 
-  color: black; 
-  border: 2px solid #094b65;
-  height: 30px;
-}
 .search2 {
     margin-left:30px;
-}
-
-.student:hover{
-    background-color: #094b65;
-  color: white;
-}
-
-.staff:hover{
-    background-color: #094b65;
-  color: white;
 }
 
 .searchbtn{
@@ -152,7 +54,13 @@ table th,td{
 	align-items: center;
     margin-left: 15%;
     margin-bottom: 3%;
+    margin-top: -20%;
 
+}
+
+.student:hover{
+    background-color: #094b65;
+  color: white;
 }
 		select{
 		 	padding: 2px;
@@ -240,22 +148,27 @@ table th,td{
     color: #cc0000;
 }
 
+.button{
+  height: 45px;
+  margin-top: 15px;
+  margin-left: 80%;
+  margin-bottom: 15px;
+  width: 120px;
+  background: white;
+  border: 3px solid #F3C301;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 35px;
+  letter-spacing: 1px;
+}
+
+.button:hover{
+  background: #F3C301;
+  border: 3px solid white;
+}
+
+
 </style>
-
-<div class="choose">
-    <img src="/logo.png"/>
-    <div class="choose2">
-        <hr>
-    </div>
-    <div class="title">
-        <p>UMP Internship Job</p>
-        <p>Portal System</p>
-    </div>
-    <button onclick="location.href='{{ url('/searchstdprofile') }}'"type="submit" class="student" value="student"> STUDENT</button>
-    <button type="submit" class="employer" value="employer">EMPLOYER</button>
-    <button onclick="location.href='{{ url('/searchstaff') }}'"type="submit" class="staff" value="staff"> STAFF</button>
-</div>
-
 <div class="items-controller">
                 <h4>Show</h4>
                 <select name="" id="itemperpage">
@@ -268,11 +181,11 @@ table th,td{
                 <h4>Per Page</h4>
             </div>
 <div class=search2>
-    <form action="/searchempprofile/search" method="GET" role="search">
+    <form action="/displayblacklist/search" method="GET" role="search">
         <div class="input-group">
             <button class="searchbtn" type="submit" title="Search projects"><ion-icon name="search-outline"></ion-icon></button>
             <input type="text" class="form-control mr-2" name="deta" placeholder="Search......" id="deta">
-            <a href="/searchempprofile">&emsp;<button  class="refreshbtn" type="button" title="Refresh page"><ion-icon name="repeat-outline"></ion-icon></button></a>
+            <a href="/displayblacklist">&emsp;<button  class="refreshbtn" type="button" title="Refresh page"><ion-icon name="repeat-outline"></ion-icon></button></a>
         </div>
                     @if(!empty($successMsg))
                         <div class="alert alert-success"> {{ $successMsg }}</div>
@@ -288,30 +201,18 @@ table th,td{
 <table>
   <thead>
 <tr>
-	<th>Reg. No</th>
-	<th>Name</th>
-	<th>Email</th>
-	<th>Office Number</th>
-    <th>Action</th>
+	<th>Company Name</th>
+	<th>Company Address</th>
   </tr>
 </thead>
 <tbody>
 @foreach($deta as $detaa)
   <tr>
-  <td>{{$detaa->reg_no}}</td>
-	<td >{{$detaa->company_name}}</td>
-    <td>{{$detaa->company_email}}</td>
-    <td >{{$detaa->company_officenum}}</td>
-    <td><a href="/displayempprofile/{{ $detaa->reg_no}}"><button type="button" style="background-color: white; border: 1px solid white;" > <ion-icon name="eye-outline"></ion-icon></button></a> &emsp;<a href="/searchempprofile/{{ $detaa->reg_no}}"><button type="button" style="background-color: white; border: 1px solid white;" onclick="return confirm('Are you sure?This record and it`s details will be permanantly deleted!')"><ion-icon name="trash-outline"></ion-icon></button></a></td>
-  </tr>
-      
+  <td>{{$detaa->companyname}}</td>
+	<td >{{$detaa->companyaddress}}</td>
+     </tr>
   @endforeach
-
-  @if(session()->has('successMsg'))
-  <div class="alert alert-success">
-        {{ session()->get('successMsg') }}
-</div>
-@endif
+  
 </tbody>
       </table>
       <section class="field">
@@ -324,9 +225,6 @@ table th,td{
             </div>
         </section>
 <br><br>
-<a href="createempprofile" class=" mt-1">
-<input type="submit" name="new" value="Create New Profile"></a>
-<br><br><br>
 </div>
 
 <script type="text/javascript" src="js/main.js"></script>

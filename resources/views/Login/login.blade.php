@@ -387,7 +387,7 @@ section form .form-control select:focus {
 
     <body>
     @if(!empty($successMsg))
-                        <div class="alert alert-danger" id="successMsg"> {{ $successMsg }}</div>
+                        <div class="alert alert-success" id="successMsg"> {{ $successMsg }}</div>
                     @endif
                     @if(!empty($failedMsg))
                         <div class="alert alert-danger" id="failedMsg"> {{ $failedMsg }}</div>

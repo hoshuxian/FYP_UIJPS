@@ -165,7 +165,8 @@ input:hover{
         @if(!empty($disable))
             <p style="color: red;font-size:60px;margin-left:-80%;margin-top: -10%;transform: translateY(0) rotate(-30deg);"> OFFER</p>
         @endif
-            <h2 class="profile" style="margin-left: -6%;margin-top: -10%;"> MY PROFILE<span style ="font-size: 90px;color: red;margin-left:40%;">{{$detaa->standard}}</span></h2>
+        <h2 class="profile" style="margin-left: -6%;margin-top: -10%;"> MY PROFILE<span style ="font-size: 90px;color: red;margin-left:40%;">{{$detaa->standard}}</span></h2>
+        <p style ="font-size:20px;color: red;margin-left:35%;margin-top: -5%;margin-bottom: 3%;">Level</p>
                 <div class="design1">
                     <div class="design2">
                         @csrf

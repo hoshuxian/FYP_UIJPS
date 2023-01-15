@@ -8,6 +8,7 @@ use App\Models\Student;
 use App\Models\Employer;
 use App\Models\Admin;
 use App\Models\blacklist;
+use App\Models\staff;
 use App\Models\studentratingscale;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -41,8 +42,8 @@ class UserController extends Controller
         $var->std_address=$req->saddress;
         $var->std_phonenum=$req->sphonenum;
         $var->std_email=$req->std_email;
-        $var->std_password=Hash::make($req->std_password);
-        $var->std_confirmpassword=Hash::make($req->std_confirmpassword);
+        $var->std_password=$req->std_password;
+        $var->std_confirmpassword=$req->std_confirmpassword;
         $var->std_faculty=$req->sfaculty;
         $var->std_description=$req->sdescription;
         $var->save();
@@ -111,7 +112,7 @@ class UserController extends Controller
         }else if ($role_type === 'Company') {
             $email = $req->input('email'); 
             $password = $req->input('password'); 
-            $deta = employer::select('company_email','company_password')->where('company_email','LIKE', '%' . $email . '%')->where('company_password','=', $password)->get();
+            $deta = employer::select('company_email','company_password')->where('company_email','=', $email)->where('company_password','=', $password)->get();
             if (count ( $deta ) >0){
                 $result = employer::select('*')->where('company_email', '=', $email)->get();
                 //$req-> session(['result' => request()->all()]);
@@ -123,12 +124,24 @@ class UserController extends Controller
         }else if ($role_type === 'Admin') {
             $email = $req->input('email'); 
             $password = $req->input('password'); 
-            $deta = admin::select('admin_email','admin_password')->where('admin_email','LIKE', '%' . $email . '%')->where('admin_password','=', $password)->get();
+            $deta = admin::select('admin_email','admin_password')->where('admin_email','=', $email)->where('admin_password','=', $password)->get();
             if (count ( $deta ) >0){
                 $result = admin::select('*')->where('admin_email', '=', $email)->get();
                 //$req-> session(['result' => request()->all()]);
                 $req->session()->put('result',$result);
                 return redirect('searchstdprofile');
+            }else{
+                return view('\Login\login')->with('failedMsg','Email and password unmatched !');
+            }
+        }else if ($role_type === 'Staff') {
+            $email = $req->input('email'); 
+            $password = $req->input('password'); 
+            $deta = staff::select('staff_email','staff_password')->where('staff_email','=',  $email)->where('staff_password','=', $password)->get();
+            if (count ( $deta ) >0){
+                $result = staff::select('*')->where('staff_email', '=', $email)->get();
+                //$req-> session(['result' => request()->all()]);
+                $req->session()->put('result',$result);
+                return redirect('myprofile');
             }else{
                 return view('\Login\login')->with('failedMsg','Email and password unmatched !');
             }
@@ -629,6 +642,12 @@ function viewblacklist()
     return view('\Admin\searchblacklist',['deta'=>$deta]);
 }
 
+function displayblacklist()
+{
+    $deta = blacklist::all();
+    return view('\Staff\displayblacklist',['deta'=>$deta]);
+}
+
 //search company blacklist
 public function blacklist(request $request)
 { 
@@ -638,6 +657,17 @@ public function blacklist(request $request)
     return view('\Admin\searchblacklist', ['deta' => $deta])->with('successMsg','Results Found !');
     else
     return view ('\Admin\searchblacklist', ['deta' => $deta])->with('FailedMsg','No Details found. Try to search again !' );		
+    
+}
+
+public function searchblacklist(request $request)
+{ 
+    $deta = $request->input('deta'); 
+    $deta = blacklist::select('companyname','companyaddress')->where('companyname','LIKE', '%' . $deta . '%')->orwhere('companyaddress','LIKE', '%' . $deta . '%')->get();
+    if (count ( $deta ) > 0)
+    return view('\Staff\displayblacklist', ['deta' => $deta])->with('successMsg','Results Found !');
+    else
+    return view ('\Staff\displayblacklist', ['deta' => $deta])->with('FailedMsg','No Details found. Try to search again !' );		
     
 }
 
@@ -785,6 +815,123 @@ function rating(Request $req)
             return redirect('showstdprofile')->with('successMsg','Rating Successful created !');
             }
         }
+
+        function createnewstaff(Request $req)
+    {
+        if (request()->has('image') ){
+            $imageuploaded = request()->file('image');
+            $imagename = time() . '.' . $imageuploaded->getClientOriginalExtension();
+            $imagepath = public_path('/');
+            $imageuploaded->move($imagepath,$imagename);
+        }
+            $var = new staff;
+            $var->staff_name=$req->name;
+            $var->staff_email=$req->email;
+            $var->staff_password=$req->password;
+            $var->staff_confirmpass=$req->confirmpassword;
+            $var->staff_phonenum=$req->phonenumber;
+            $var->staff_faculty=$req->faculty;
+            $var->staff_pic = '/' . $imagename;
+            $var->save();
+            return redirect('searchstaff')->with('successMsg','Staff Successful created !');
+            }
+
+            function viewstafflist()
+{
+    $deta = staff::all();
+    return view('\Admin\searchstaff',['deta'=>$deta]);
+}
+
+
+public function stafflist(request $request)
+{ 
+    $deta = $request->input('deta'); 
+    $deta = staff::select('staff_name','staff_email','staff_phonenum')->where('staff_name','LIKE', '%' . $deta . '%')->orwhere('staff_email','LIKE', '%' . $deta . '%')->orwhere('staff_phonenum','LIKE', '%' . $deta . '%')->get();
+    if (count ( $deta ) > 0)
+    return view('\Admin\searchstaff', ['deta' => $deta])->with('successMsg','Results Found !');
+    else
+    return view ('\Admin\searchstaff', ['deta' => $deta])->with('FailedMsg','No Details found. Try to search again !' );		
+    
+}
+
+public function deletestaff($id)
+{
+    $result = staff::select('*')->where('id', '=', $id)->delete();
+    return redirect('searchstaff')->with('successMsg','Profile Successful deleted !');
+}
+
+function displaystaff($id)
+
+{
+    $result = staff::select('*')->where('id', '=', $id)->get();
+    return view('\Admin\displaystaff', ['result' => $result]);
+}
+
+public function updatestaff($id)
+{
+    $result = staff::select('*')->where('id', '=', $id)->get();
+    return view('\Admin\updatestaff', ['result' => $result]);
+}
+
+function staffupdate(Request $req)
+    {
+        if (request()->has('image') ){
+            $imageuploaded = request()->file('image');
+            $imagename = time() . '.' . $imageuploaded->getClientOriginalExtension();
+            $imagepath = public_path('/');
+            $imageuploaded->move($imagepath,$imagename);
+        }
+            $var = staff::find($req->id);
+            $var->staff_name=$req->input('name');
+            $var->staff_email=$req->input('email');
+            $var->staff_password=$req->input('password');
+            $var->staff_confirmpass=$req->input('confirmpassword');
+            $var->staff_phonenum=$req->input('phonenumber');
+            $var->staff_faculty=$req->input('faculty');
+            $var->staff_pic = '/' . $imagename;
+            $var->update();
+            return redirect('searchstaff')->with('successMsg','Profile Successful updated !');
+
+}
+
+function mystaff($id)
+
+{
+    $result = staff::select('*')->where('id', '=', $id)->get();
+    return view('\Staff\myprofile', ['result' => $result]);
+}
+
+public function updatestafflist($id)
+{
+    $result = staff::select('*')->where('id', '=', $id)->get();
+    return view('\Staff\updatestafflist', ['result' => $result]);
+}
+
+function stafflistupdate(Request $req)
+    {
+        if (request()->has('image') ){
+            $imageuploaded = request()->file('image');
+            $imagename = time() . '.' . $imageuploaded->getClientOriginalExtension();
+            $imagepath = public_path('/');
+            $imageuploaded->move($imagepath,$imagename);
+        }
+        if($req->session()->has('result')){
+            $result=session('result.0.id');  
+            $var = staff::find($req->id);
+            $var->staff_name=$req->input('name');
+            $var->staff_email=$req->input('email');
+            $var->staff_password=$req->input('password');
+            $var->staff_confirmpass=$req->input('confirmpassword');
+            $var->staff_phonenum=$req->input('phonenumber');
+            $var->staff_faculty=$req->input('faculty');
+            $var->staff_pic = '/' . $imagename;
+            $var->update();
+            $result = staff::select('*')->where('id', '=', $result)->get();
+            $req->session()->put('result',$result);
+            return view('\Staff\myprofile', ['result' => $result])->with('successMsg','Profile Successful updated !');
+        }
+
+}
 
 }
 
