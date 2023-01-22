@@ -583,13 +583,6 @@ color: #1DC4E7;
         </li>
 
         <li class="list">
-            <a href="#" style="--clr:#FDD017;">
-                <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
-                <span class="text">Chat Box</span>
-            </a>
-        </li>
-
-        <li class="list">
             <a href="/event" style="--clr:#0fc70f;">
                 <span class="icon"><ion-icon name="calendar-outline"></ion-icon></span>
                 <span class="text">Event</span>

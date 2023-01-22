@@ -423,7 +423,7 @@ section form .form-control select:focus {
                     <option value="student">Student</option>
                     <option value="Company">Company</option>
                     <option value="Staff">Staff</option>
-                    <option value="Admin">Admin</option>
+                    <option value="Admin">Coordinator</option>
                     </select>
 </div>
                 </div>
