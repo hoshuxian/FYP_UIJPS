@@ -1,10 +1,84 @@
-@extends ('masterE')
+@extends ('masterStaff')
 @section('content')
 
 
 <!DOCTYPE html>
     <html>
         <style>
+.choose{
+    border: 6px solid #094b65;
+    width: 500px;
+    height: 200px;
+    margin-left: 35%;
+    margin-bottom: 10%;
+    text-align: center;
+    object-fit: cover;
+    margin-top: -24%;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.student{
+    height: 45px;
+  margin-left: 3%;
+  margin-bottom: 15px;
+  width: 120px;
+  background: #094b65;
+  border: 3px solid #094b65;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 10px;
+  color: white;
+}
+
+.employer{
+    height: 45px;
+  margin-left: 3%;
+  margin-bottom: 15px;
+  width: 120px;
+  background: white;
+  border: 3px solid #094b65;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 10px;
+}
+
+.staff{
+    height: 45px;
+  margin-left: 3%;
+  margin-bottom: 15px;
+  width: 120px;
+  background: white;
+  border: 3px solid #094b65;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 10px;
+}
+
+img{
+    margin-top: 10px;
+  margin-left: -45%;
+  margin-bottom: 15px;
+}
+
+.choose2{
+    border: 2px solid black;
+    transform: rotate(90deg);
+    width: 15%;
+    object-fit: cover;
+    margin-top: -12%;
+    margin-left: 40%;
+    margin-bottom: 15%;
+    height: 0.5px;
+}
+
+.title{
+    object-fit: cover;
+    margin-top: -20%;
+    margin-left: 40%;
+    margin-bottom: 15%;
+}
+
 table {
     margin-left: 15%;
     width:75%;
@@ -20,11 +94,30 @@ table th,td{
   text-align:center;
 }
 
+.mt-1 input:hover {
+    background-color: #094b65;
+  color: white;
+}
+
+.mt-1 input{
+    width:150px;
+  margin-left:70%;
+  border-radius:8px;
+  background-color: white; 
+  color: black; 
+  border: 2px solid #094b65;
+  height: 30px;
+}
 .search2 {
     margin-left:30px;
 }
 
 .employer:hover{
+    background-color: #094b65;
+  color: white;
+}
+
+.staff:hover{
     background-color: #094b65;
   color: white;
 }
@@ -133,6 +226,7 @@ table th,td{
     margin-top: 5px;
     padding-left: 10px;
     color: #007e33;
+    padding-top: 5px;
 }
 
 .alert-danger{
@@ -146,6 +240,20 @@ table th,td{
     color: #cc0000;
 }
 </style>
+
+<div class="choose">
+    <img src="/logo.png"/>
+    <div class="choose2">
+        <hr>
+    </div>
+    <div class="title">
+        <p>UMP Internship Job</p>
+        <p>Portal System</p>
+    </div>
+    <button type="submit" class="student" value="student"> STUDENT</button>
+    <button onclick="location.href='{{ url('/searchemp') }}'" type="submit" class="employer" value="employer">EMPLOYER</button>
+</div>
+
 <div class="items-controller">
                 <h4>Show</h4>
                 <select name="" id="itemperpage">
@@ -157,6 +265,21 @@ table th,td{
                 </select>
                 <h4>Per Page</h4>
             </div>
+<div class=search2>
+    <form action="/searchstd/search" method="GET" role="search">
+        <div class="input-group">
+            <button class="searchbtn" type="submit" title="Search projects"><ion-icon name="search-outline"></ion-icon></button>
+            <input type="text" class="form-control mr-2" name="deta" placeholder="Search......" id="deta">
+            <a href="/searchstd">&emsp;<button  class="refreshbtn" type="button" title="Refresh page"><ion-icon name="repeat-outline"></ion-icon></button></a>
+        </div>
+                    @if(!empty($successMsg))
+                        <div class="alert alert-success"> {{ $successMsg }}</div>
+                    @endif
+
+                    @if(!empty($FailedMsg))
+                        <div class="alert alert-danger"> {{ $FailedMsg }}</div>
+                    @endif
+</div>
 </form>
 <div class = "table">
 <br>
@@ -167,26 +290,25 @@ table th,td{
 	<th>Name</th>
 	<th>Email</th>
 	<th>Phone Number</th>
-	<th>Status</th>
     <th>Action</th>
   </tr>
 </thead>
-@if(session()->has('successMsg'))
-    <div class="alert alert-success">
-        {{ session()->get('successMsg') }}
-    </div>
-@endif
-@foreach($deta as $detaa)
 <tbody>
+@foreach($deta as $detaa)
   <tr>
   <td>{{$detaa->std_matric}}</td>
 	<td >{{$detaa->std_name}}</td>
     <td>{{$detaa->std_email}}</td>
     <td >{{$detaa->std_phonenum}}</td>
-	<td>{{$detaa->status}}</td>
-    <td><a href="/display/{{$detaa->post_id}}/{{ $detaa->id}}"><button type="button" style="background-color: white; border: 1px solid white;" > <ion-icon name="eye-outline"></ion-icon></button></a></td>
+    <td><a href="/display/{{ $detaa->id }}"><button type="button" style="background-color: white; border: 1px solid white;" > <ion-icon name="eye-outline"></ion-icon></button></a> </td>
   </tr>
   @endforeach
+  
+  @if(session()->has('successMsg'))
+  <div class="alert alert-success">
+        {{ session()->get('successMsg') }}
+</div>
+@endif
 </tbody>
       </table>
       <section class="field">
@@ -199,10 +321,10 @@ table th,td{
             </div>
         </section>
 <br><br>
-
+<br><br><br>
 </div>
 
-
+<script type="text/javascript" src="js/main.js"></script>
 <script>
     var tbody = document.querySelector("tbody");
 		var pageUl = document.querySelector(".pagination");

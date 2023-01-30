@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\blacklistController;
 
 
 /*
@@ -135,7 +136,12 @@ Route::get('/searchstudent', 'App\Http\Controllers\UserController@viewstdlist');
 Route::get('/searchstudent/search', 'App\Http\Controllers\UserController@stdlist');
 Route::get('/displaystudentprofile/{std_matric}', 'App\Http\Controllers\UserController@displaystudentprofile');
 
-
+Route::get('/searchstd', 'App\Http\Controllers\UserController@searchstd');
+Route::get('/searchstd/search', 'App\Http\Controllers\UserController@list');
+Route::get('/display/{id}', 'App\Http\Controllers\UserController@display');
+Route::get('/searchemp', 'App\Http\Controllers\UserController@searchemp');
+Route::get('/searchemp/search', 'App\Http\Controllers\UserController@emplist');
+Route::get('/displayemp/{reg_no}', 'App\Http\Controllers\UserController@profile');
 //Manage Event
 //admin
 Route::get('/createevent', function () {
@@ -209,15 +215,15 @@ Route::get('/showjob/{post_id}', 'App\Http\Controllers\PostController@showjob');
 Route::get('/blacklist', function () {
     return view('/Admin/blacklist');
 });
-Route::post('/createblacklist', 'App\Http\Controllers\UserController@createblacklist');
-Route::get('/searchblacklist', 'App\Http\Controllers\UserController@viewblacklist');
-Route::get('/searchblacklist/search', 'App\Http\Controllers\UserController@blacklist');
-Route::get('/searchblacklist/{id}', 'App\Http\Controllers\UserController@deleteblacklist');
-Route::get('/updateblacklist/{id}', 'App\Http\Controllers\UserController@updateblacklist');
-Route::post('/blacklistupdate', 'App\Http\Controllers\UserController@blacklistupdate');
+Route::post('/createblacklist', 'App\Http\Controllers\blacklistController@createblacklist');
+Route::get('/searchblacklist', 'App\Http\Controllers\blacklistController@viewblacklist');
+Route::get('/searchblacklist/search', 'App\Http\Controllers\blacklistController@blacklist');
+Route::get('/searchblacklist/{id}', 'App\Http\Controllers\blacklistController@deleteblacklist');
+Route::get('/updateblacklist/{id}', 'App\Http\Controllers\blacklistController@updateblacklist');
+Route::post('/blacklistupdate', 'App\Http\Controllers\blacklistController@blacklistupdate');
 
-Route::get('/displayblacklist', 'App\Http\Controllers\UserController@displayblacklist');
-Route::get('/displayblacklist/search', 'App\Http\Controllers\UserController@searchblacklist');
+Route::get('/displayblacklist', 'App\Http\Controllers\blacklistController@displayblacklist');
+Route::get('/displayblacklist/search', 'App\Http\Controllers\blacklistController@searchblacklist');
 
 //Rate
 Route::get('/ratingform', function () {

@@ -141,7 +141,8 @@ public function select2(Request $req)
         })
         ->select('students.std_name')
         ->where('posts.id','=',$result)
-        ->where('joboffers.status','=','Accept')->get();
+        ->where('joboffers.status','=','Accept')
+        ->distinct()->get();
 
         $var = DB::table('posts')->join('joboffers','posts.post_id','=','joboffers.post_id')
         ->leftJoin('students',function($join){

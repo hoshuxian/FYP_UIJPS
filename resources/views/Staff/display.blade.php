@@ -167,43 +167,59 @@ button:hover{
 <div class="background">
 <img class="background_img"src="/stdbackground.jpg">
 <div class="myprofile">
-@foreach(Session::get('result') as $detaa)
-<form action="/updatestafflist/{{ $detaa->id}} " method='get'>
+@foreach($result as $detaa)
+<form action="# " method='get'>
 
-@if($detaa->staff_pic)
-    <img class="std_pic" src="{{$detaa->staff_pic}}" name="image">
+@if($detaa->std_pic)
+    <img class="std_pic" src="{{$detaa->std_pic}}" name="image">
 @else
     <img class="std_pic" src="/default.jpg" name="image"/>
 @endif
 
-<h2 class="profile"> MY PROFILE</h2>
+<h2 class="profile" style="margin-left: -6%;margin-top: -10%;"> MY PROFILE<span style ="font-size: 90px;color: red;margin-left:40%;">{{$detaa->standard}}</span></h2>
+        <p style ="font-size:20px;color: red;margin-left:35%;margin-top: -5%;margin-bottom: 3%;">Level</p>
         <div class="design1">
             <div class="design2">
             @csrf
     <table>
 <tr>
-<th>{{$detaa->staff_name}}<br><br></th>
+<th>{{$detaa->std_name}}<br><br></th>
 </tr>
 <tr>
-<th>{{$detaa->staff_phonenum}}<br><br></th>
+<th>{{$detaa->std_matric}}<br><br></th>
 </tr>
 <tr>
-<th>{{$detaa->staff_email}}<br><br></th>
+<th>{{$detaa->std_address}}<br><br></th>
 </tr>
 <tr>
-<th>{{$detaa->staff_faculty}}<br><br></th>
+<th>{{$detaa->std_phonenum}}<br><br></th>
+</tr>
+<tr>
+<th>{{$detaa->std_email}}<br><br></th>
+</tr>
+<tr>
+<th>{{$detaa->std_faculty}}<br><br></th>
+</tr>
+<tr>
+<th>{{$detaa->std_description}}<br><br></th>
 </tr>
 
 </table>
             </div>
         </div>
+        <h2 class="resume"> RESUME</h2>
+        @if($detaa->resume)
+        <img src="{{$detaa->resume}}" name="image" class="resume_pic">
+@else
+    <img class="resume_pic" src="/nofile.png" name="image"/>
+@endif
 @endforeach
     </div>
 </div>
 </div>
 
 <br><br>
-<button type="submit" value="edit" style="margin-left:80%;">EDIT</button>
+<a href='/searchstd' type="submit"value="Back" class="button"style="margin-left:80%;">BACK</a>
 <br><br>
 </form>
 </html>

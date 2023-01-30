@@ -219,7 +219,7 @@ function displaystudentapply(Request $req,$post_id)
     if($req->session()->has('result')){
         $result=session('result.0.id');
         $deta = DB::table('students')->join('jobapplies', 'jobapplies.id', '=', 'students.id')
-        ->select('students.std_matric', 'students.std_name', 'students.std_email', 'students.std_phonenum', 'students.id','jobapplies.post_id')
+        ->select('students.std_matric', 'students.std_name', 'students.std_email', 'students.std_phonenum', 'students.id','jobapplies.post_id','jobapplies.status')
         ->where('jobapplies.post_id', '=', $post_id)->get();
     return view('\Employer\displaystudentapply', ['deta' => $deta]);
     }
@@ -322,8 +322,16 @@ function hired(Request $req,$post_id,$id)
     $var->save();
 
     $deta = DB::table('students')->join('jobapplies', 'jobapplies.id', '=', 'students.id')
-        ->select('students.std_matric', 'students.std_name', 'students.std_email', 'students.std_phonenum', 'students.id','jobapplies.post_id')
+        ->select('students.std_matric', 'students.std_name', 'students.std_email', 'students.std_phonenum', 'students.id','jobapplies.post_id','jobapplies.status')
         ->where('jobapplies.post_id', '=', $post_id)->get();
+        $detaa = jobapply::Select('apply_id')->where('id', '=', $id)->where('post_id','=',$post_id)->get();
+        $req->session()->put('offer',$detaa);
+        if($req->session()->has('offer')){
+            $result=session('offer.0.apply_id');
+            $var = jobapply::where('apply_id', '=', $result)->first();
+        $var->status = 'Offer';
+        $var->update();
+        }
     return view ('\Employer\displaystudentapply', ['deta' => $deta])->with('successMsg','Your offer had been sent to the student!');
     }
     
@@ -339,7 +347,7 @@ function receiptoffer(Request $req)
         ->leftJoin('employers',function($join){
             $join->on('posts.id','=','employers.id');
         })
-        ->select('employers.reg_no', 'employers.company_name', 'employers.company_email', 'employers.company_officenum','posts.post_id','joboffers.id')
+        ->select('employers.company_name', 'employers.company_email', 'employers.company_officenum','posts.post_id','joboffers.id','posts.job_title','joboffers.status')
         ->where('joboffers.sid','=',$result)->get();
         return view('\Student\receiptoffer', ['deta' => $deta]);
     }

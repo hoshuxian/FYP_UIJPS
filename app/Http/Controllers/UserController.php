@@ -252,7 +252,7 @@ public function studentlist(request $request)
 {
    
     $deta = $request->input('deta'); 
-    $deta = Student::select('std_matric','std_name','std_email','std_phonenum')->where('std_matric','LIKE', '%' . $deta . '%')->orwhere('std_name','LIKE', '%' . $deta . '%')->orwhere('std_email','LIKE', '%' . $deta . '%')->orwhere('std_phonenum','LIKE', '%' . $deta . '%')->get();
+    $deta = Student::select('std_matric','std_name','std_email','std_phonenum','id')->where('std_matric','LIKE', '%' . $deta . '%')->orwhere('std_name','LIKE', '%' . $deta . '%')->orwhere('std_email','LIKE', '%' . $deta . '%')->orwhere('std_phonenum','LIKE', '%' . $deta . '%')->get();
     if (count ( $deta ) > 0)
     return view('\Admin\searchstdprofile', ['deta' => $deta])->with('successMsg','Results Found !');
     else
@@ -266,6 +266,37 @@ public function deletestudentprofile($id)
     return redirect('searchstdprofile')->with('successMsg','Profile Successful deleted !');
 }
 
+function searchstd()
+{
+    $deta = Student::all();
+    return view('\Staff\searchstd',['deta'=>$deta]);
+}
+
+public function list(request $request)
+{
+   
+    $deta = $request->input('deta'); 
+    $deta = Student::select('std_matric','std_name','std_email','std_phonenum','id')->where('std_matric','LIKE', '%' . $deta . '%')->orwhere('std_name','LIKE', '%' . $deta . '%')->orwhere('std_email','LIKE', '%' . $deta . '%')->orwhere('std_phonenum','LIKE', '%' . $deta . '%')->get();
+    if (count ( $deta ) > 0)
+    return view('\Staff\searchstd', ['deta' => $deta])->with('successMsg','Results Found !');
+    else
+    return view ('\Staff\searchstd', ['deta' => $deta])->with('FailedMsg','No Details found. Try to search again !' );		
+    
+}
+
+function display($id)
+
+{
+    $result = student::select('*')->where('id', '=', $id)->get();
+    return view('\Staff\display', ['result' => $result]);
+}
+
+function profile($reg_no)
+
+{
+    $result = employer::select('*')->where('reg_no', '=', $reg_no)->get();
+    return view('\Staff\displayemp', ['result' => $result]);
+}
 
 //employer
 function viewemployerlist()
@@ -283,6 +314,24 @@ public function employerlist(request $request)
     return view('\Admin\searchempprofile', ['deta' => $deta])->with('successMsg','Results Found !');
     else
     return view ('\Admin\searchempprofile', ['deta' => $deta])->with('FailedMsg','No Details found. Try to search again !' );		
+    
+}
+
+function searchemp()
+{
+    $deta = employer::all();
+    return view('\Staff\searchemp',['deta'=>$deta]);
+}
+
+public function emplist(request $request)
+{
+   
+    $deta = $request->input('deta'); 
+    $deta = employer::select('reg_no','company_name','company_email','company_officenum')->where('reg_no','LIKE', '%' . $deta . '%')->orwhere('company_name','LIKE', '%' . $deta . '%')->orwhere('company_email','LIKE', '%' . $deta . '%')->orwhere('company_officenum','LIKE', '%' . $deta . '%')->get();
+    if (count ( $deta ) > 0)
+    return view('\Staff\searchemp', ['deta' => $deta])->with('successMsg','Results Found !');
+    else
+    return view ('\Staff\searchemp', ['deta' => $deta])->with('FailedMsg','No Details found. Try to search again !' );		
     
 }
 
@@ -634,75 +683,6 @@ function rate(Request $req)
             }
         }
 
-//Blacklist
-//display company blacklist
-function viewblacklist()
-{
-    $deta = blacklist::all();
-    return view('\Admin\searchblacklist',['deta'=>$deta]);
-}
-
-function displayblacklist()
-{
-    $deta = blacklist::all();
-    return view('\Staff\displayblacklist',['deta'=>$deta]);
-}
-
-//search company blacklist
-public function blacklist(request $request)
-{ 
-    $deta = $request->input('deta'); 
-    $deta = blacklist::select('companyname','companyaddress')->where('companyname','LIKE', '%' . $deta . '%')->orwhere('companyaddress','LIKE', '%' . $deta . '%')->get();
-    if (count ( $deta ) > 0)
-    return view('\Admin\searchblacklist', ['deta' => $deta])->with('successMsg','Results Found !');
-    else
-    return view ('\Admin\searchblacklist', ['deta' => $deta])->with('FailedMsg','No Details found. Try to search again !' );		
-    
-}
-
-public function searchblacklist(request $request)
-{ 
-    $deta = $request->input('deta'); 
-    $deta = blacklist::select('companyname','companyaddress')->where('companyname','LIKE', '%' . $deta . '%')->orwhere('companyaddress','LIKE', '%' . $deta . '%')->get();
-    if (count ( $deta ) > 0)
-    return view('\Staff\displayblacklist', ['deta' => $deta])->with('successMsg','Results Found !');
-    else
-    return view ('\Staff\displayblacklist', ['deta' => $deta])->with('FailedMsg','No Details found. Try to search again !' );		
-    
-}
-
-public function deleteblacklist($id)
-{
-    $result = blacklist::select('*')->where('id', '=', $id)->delete();
-    return redirect('searchblacklist')->with('successMsg','Profile Successful deleted !');
-}
-
-function createblacklist(Request $req)
-    {
-            $var = new blacklist;
-            $var->companyname=$req->name;
-            $var->companyaddress=$req->address;
-            $var->save();
-            return redirect('searchblacklist')->with('successMsg','Profile Successful created !');
-
-}
-
-public function updateblacklist($id)
-{
-    $result = blacklist::select('*')->where('id', '=', $id)->get();
-    return view('\Admin\updateblacklist', ['result' => $result]);
-}
-
-function blacklistupdate(Request $req)
-    {
-            $var = blacklist::find($req->id);
-            $var->companyname=$req->input('name');
-            $var->companyaddress=$req->input('address');
-            $var->update();
-            return redirect('searchblacklist')->with('successMsg','Profile Successful updated !');
-
-}
-
 function rating(Request $req)
     {
         
@@ -846,7 +826,7 @@ function rating(Request $req)
 public function stafflist(request $request)
 { 
     $deta = $request->input('deta'); 
-    $deta = staff::select('staff_name','staff_email','staff_phonenum')->where('staff_name','LIKE', '%' . $deta . '%')->orwhere('staff_email','LIKE', '%' . $deta . '%')->orwhere('staff_phonenum','LIKE', '%' . $deta . '%')->get();
+    $deta = staff::select('staff_name','staff_email','staff_phonenum','id')->where('staff_name','LIKE', '%' . $deta . '%')->orwhere('staff_email','LIKE', '%' . $deta . '%')->orwhere('staff_phonenum','LIKE', '%' . $deta . '%')->get();
     if (count ( $deta ) > 0)
     return view('\Admin\searchstaff', ['deta' => $deta])->with('successMsg','Results Found !');
     else

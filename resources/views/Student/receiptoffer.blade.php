@@ -163,10 +163,11 @@ table th,td{
 <table>
   <thead>
 <tr>
-	<th>Reg. No</th>
 	<th>Name</th>
 	<th>Email</th>
 	<th>Office Number</th>
+	<th>Position</th>
+	<th>Status</th>
     <th>Action</th>
   </tr>
 </thead>
@@ -178,10 +179,11 @@ table th,td{
 <tbody>
 @foreach($deta as $detaa)
   <tr>
-  <td>{{$detaa->reg_no}}</td>
 	<td >{{$detaa->company_name}}</td>
     <td>{{$detaa->company_email}}</td>
     <td >{{$detaa->company_officenum}}</td>
+	<td >{{$detaa->job_title}}</td>
+	<td >{{$detaa->status}}</td>
     <td><a href="/displayoffer/{{ $detaa->post_id}}"><button type="button" style="background-color: white; border: 1px solid white;" > <ion-icon name="eye-outline"></ion-icon></button></a></td>
   </tr>
   @endforeach

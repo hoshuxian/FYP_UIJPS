@@ -109,7 +109,7 @@ body{
     border-radius: 50%;
     border: 6px solid white;
     transition: 0.5s;
-    margin-left: 15px;
+    margin-left: 5px;
     z-index: -4;
 }
 
@@ -146,33 +146,38 @@ body{
 }
 
 .navigation ul li:nth-child(1).active ~ .indicator{
-    transform: translateX(calc(85px * 0));
+    transform: translateX(calc(70px * 0));
     background: #f44336;
 }
 
 .navigation ul li:nth-child(2).active ~ .indicator{
-    transform: translateX(calc(75px * 1));
+    transform: translateX(calc(65px * 1));
     background: #ffa117;
 }
 
 .navigation ul li:nth-child(3).active ~ .indicator{
-    transform: translateX(calc(80px * 2));
+    transform: translateX(calc(68px * 2));
     background: #FDD017;
 }
 
 .navigation ul li:nth-child(4).active ~ .indicator{
-    transform: translateX(calc(78px * 3));
+    transform: translateX(calc(70px * 3));
     background: #0fc70f;
 }
 
 .navigation ul li:nth-child(5).active ~ .indicator{
-    transform: translateX(calc(81px * 4));
+    transform: translateX(calc(69px * 4));
     background: #2196f3;
 }
 
 .navigation ul li:nth-child(6).active ~ .indicator{
-    transform: translateX(calc(81px * 5));
+    transform: translateX(calc(70px * 5));
     background: #4B0082;
+}
+
+.navigation ul li:nth-child(7).active ~ .indicator{
+    transform: translateX(calc(71px * 6));
+    background: #CD66FF;
 }
 @keyframes animate{
     0%,100%
@@ -422,35 +427,42 @@ color: #1DC4E7;
         </li>
 
         <li class="list">
-            <a href="/displayeventlist" style="--clr:#ffa117;">
+            <a href="/searchstd" style="--clr:#ffa117;">
+                <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                <span class="text">Manage User</span>  
+            </a>
+        </li>
+
+        <li class="list">
+            <a href="/displayeventlist" style="--clr:#FDD017;">
                 <span class="icon"><ion-icon name="calendar-outline"></ion-icon></span>
                 <span class="text">Manage Event</span>  
             </a>
         </li>
 
         <li class="list">
-            <a href="/displaystdfeedback" style="--clr:#FDD017;">
+            <a href="/displaystdfeedback" style="--clr:#0fc70f;">
                 <span class="icon"><ion-icon name="create-outline"></ion-icon></span>
                 <span class="text">Manage Feedback</span>  
             </a>
         </li>
 
         <li class="list">
-            <a href="/viewjobpost" style="--clr:#0fc70f;">
+            <a href="/viewjobpost" style="---clr:#2196f3;">
                 <span class="icon"><ion-icon name="push-outline"></span>
                 <span class="text">Manage Job Post</span>  
             </a>
         </li>
 
         <li class="list">
-            <a href="/displayblacklist" style="--clr:#2196f3;">
+            <a href="/displayblacklist" style="--clr:#4B0082;">
                 <span class="icon"><ion-icon name="close-circle-outline"></span>
                 <span class="text">Manage Blacklist</span>  
             </a>
         </li>
 
         <li class="list">
-            <a href="{{ url('/logout') }}" style="--clr:#4B0082;">
+            <a href="{{ url('/logout') }}" style="--clr:#CD66FF;">
                 <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
                 <span class="text">Logout</span>
             </a>
