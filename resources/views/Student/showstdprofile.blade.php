@@ -128,13 +128,11 @@ button:hover{
   border: 3px solid white;
 }
 
-</style>
+tbody{
+    text-align: center;
+}
 
-@if(session()->has('successMsg'))
-    <div class="alert alert-success">
-        {{ session()->get('successMsg') }}
-    </div>
-@endif
+</style>
 <div class="box">
 <div class="background">
 <img class="background_img"src="/stdbackground.jpg">
@@ -155,6 +153,7 @@ button:hover{
                  <div class="design1">
             <div class="design2">
     <table>
+        <tbody>
 <tr>
 <th>{{$detaa->std_name}}<br><br></th>
 </tr>
@@ -176,7 +175,7 @@ button:hover{
 <tr>
 <th>{{$detaa->std_description}}<br><br></th>
 </tr>
-
+</tbody>
 </table>
             </div>
         </div>

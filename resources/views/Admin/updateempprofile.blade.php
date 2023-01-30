@@ -190,7 +190,7 @@ form img{
 <input type="hidden" class="text" placeholder="Company's ID" value="{{ $detaa->id}}"name="id" >
 
   <img src="{{$detaa->company_logo}}"style="width:150px;height:150px; float:left;border-radius:50%;margin-right:25px;border;" name ="image" required>
-    <br><br><input type ="file" name="image" value="{{ $detaa->company_logo}}" id="image">
+    <br><br><input type ="file" name="image" value="{{ $detaa->company_logo}}" id="image"required>
     <div class="hr3">
     <hr>
     </div>

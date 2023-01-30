@@ -7,8 +7,8 @@
         <style>
 
 .container4{
-	width: 300px;
-	height:270px;
+	width: 330px;
+	height:fit-content;
 	border: 2px solid black;
 	background-color:  #094b65;
 	border-radius: 10%;
@@ -19,8 +19,8 @@
 
 .container3{
 	width: fit-content;
-	min-width: 310px;
-	height:270px;
+	min-width: 350px;
+	height:fit-content;
 	border: 2px solid black;
 	background-color:  white;
 	border-radius: 10%;
@@ -221,8 +221,6 @@
 	</div>
 	<div class="detail">
 	{{$detaa->job_venue}}
-	<br>
-  {{$detaa->job_benefit}}
   <br>
   {{$detaa->job_salary}}
   <br>

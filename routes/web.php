@@ -74,6 +74,9 @@ Route::get('/searchempprofile/search', 'App\Http\Controllers\UserController@empl
 Route::get('/searchempprofile/{reg_no}', 'App\Http\Controllers\UserController@deleteemployerprofile');
 Route::get('/displaystdprofile/{id}', 'App\Http\Controllers\UserController@displaystdprofile');
 Route::get('/masterS/{id}', 'App\Http\Controllers\UserController@display');
+//report
+Route::get('/report', 'App\Http\Controllers\PostController@report');
+Route::get('/report/search', 'App\Http\Controllers\PostController@searchreport');
 
 /*Route::get('/test', function () {
     return view('/Admin/test');
@@ -164,7 +167,7 @@ Route::get('/newevent', function () {
 Route::post('/newevent', 'App\Http\Controllers\EventController@newevent');
 Route::get('/filterevent', 'App\Http\Controllers\EventController@list');
 Route::get('/filterevent/search', 'App\Http\Controllers\EventController@filterlist');
-Route::get('/showevent/{id}', 'App\Http\Controllers\EventController@showevent');
+Route::get('/showcareerevent/{id}', 'App\Http\Controllers\EventController@showevent');
 Route::get('/editevent/{id}', 'App\Http\Controllers\EventController@editevent');
 Route::post('/eventedit', 'App\Http\Controllers\EventController@eventedit');
 
@@ -193,7 +196,7 @@ Route::get('/searchjob/search', 'App\Http\Controllers\PostController@joblist');
 Route::get('/displayjob/{post_id}', 'App\Http\Controllers\PostController@displayjob');
 
 Route::get('/displaystudentapply/{post_id}', 'App\Http\Controllers\PostController@displaystudentapply');
-Route::get('/display/{post_id}/{id}', 'App\Http\Controllers\POstController@display');
+Route::get('/display/{post_id}/{id}', 'App\Http\Controllers\PostController@display');
 Route::get('/displaystudentapply/{post_id}/search', 'App\Http\Controllers\PostController@searchapply');
 Route::post('/hired/{post_id}/{id}', 'App\Http\Controllers\PostController@hired');
 Route::get('/displayhiredlist/{post_id}', 'App\Http\Controllers\PostController@displayhiredlist');
@@ -203,8 +206,8 @@ Route::get('/receiptoffer', 'App\Http\Controllers\POstController@receiptoffer');
 Route::get('/displayoffer/{post_id}', 'App\Http\Controllers\PostController@displayoffer');
 Route::post('/accept/{post_id}', 'App\Http\Controllers\PostController@accept');
 
-Route::get('/viewjobpost', 'App\Http\Controllers\PostController@viewlist');
-Route::get('/viewjobpost/search', 'App\Http\Controllers\PostController@alllist');
+Route::get('/viewalljobpost', 'App\Http\Controllers\PostController@viewlist');
+Route::get('/viewalljobpost/search', 'App\Http\Controllers\PostController@alllist');
 Route::get('/displayjobpost/{post_id}', 'App\Http\Controllers\PostController@displayalllist');
 
 Route::get('/viewjobpost', 'App\Http\Controllers\PostController@alljoblist');

@@ -436,7 +436,7 @@ color: #1DC4E7;
         </li>
 
         <li class="list">
-            <a href="/viewjobpost" style="--clr:#0fc70f;">
+            <a href="/viewalljobpost" style="--clr:#0fc70f;">
                 <span class="icon"><ion-icon name="push-outline"></span>
                 <span class="text">Manage Job Post</span>  
             </a>

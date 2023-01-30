@@ -169,6 +169,11 @@ height:20%;
 </tr>
 
 <tr>
+<th>Position Available:</th>
+<th><input type="text" class="text" placeholder="Number of position available" name="position_available" value="{{ $detaa->position_available}}" id="position_available"  required></input></th>
+</tr>
+
+<tr>
 <th>Salary:</th>
 <th><input type="text" class="text" placeholder="Job's Salary" name="job_salary" value="{{ $detaa->job_salary}}" id="job_salary" required></input></th>
 </tr>

@@ -463,7 +463,7 @@ header ul li a.active{
     position: absolute;
     width:85%;
     height:60%;
-    margin-left: -18%;
+    margin-left: 3%;
     margin-top: -6%;
     transform: rotate(-10deg);
 }
@@ -832,29 +832,11 @@ footer svg {
 </div>
 
 <div class="career3">
+<img src="/deco.png" class="deco" id="deco"> 
     <img src="/carrerfair.png" class="carrerfair" id="carrerfair">   
     <hr width="1" size="500%"></hr>
     <div class="content2">   
         <h2> Latest Career Fair</h2>
-        <p>UMP latest career event will be enounce at here.</p>
-    </div>
-</div>
-
-<div class="chat">
-    <p>Contact with Employers</p>
-</div>
-
-<div class="chat2">
-    <p>Contact with Employers</p>
-    <hr></hr>
-</div>
-
-<div class="chat3">
-    <img src="/deco.png" class="deco" id="deco">   
-    <img src="/avatar1.png" class="avatar1" id="avatar1">   
-    <img src="/avatar2.png" class="avatar2" id="avatar2">   
-    <div class="content3">   
-        <h2> Communicate with the top employers</h2>
         <p>UMP latest career event will be enounce at here.</p>
     </div>
 </div>

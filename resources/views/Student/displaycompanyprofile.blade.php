@@ -6,7 +6,7 @@
         <style>
 .box{
     width: 70%;
-    height: 1800px;
+    height: fit-content;
     margin-left: 15%;
     margin-bottom: 3%;
     text-align: center;

@@ -556,7 +556,11 @@ color: #1DC4E7;
     @foreach(Session::get('result') as $result)
 
     <div class="pic">
+        @if($result->company_logo)
     <img class="company_logo" src="{{$result->company_logo}}" name="image">
+    @else
+    <img class="company_logo" src="/nologo.png" name="image"/>
+@endif
     </div>
     <h2>{{$result->company_name}}</h2>
     

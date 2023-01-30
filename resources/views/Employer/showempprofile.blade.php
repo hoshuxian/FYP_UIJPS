@@ -33,7 +33,7 @@
     width: 74%;
     height: fit-content;
     margin-left: 12%;
-    margin-bottom: 3%;
+    margin-bottom: 5%;
     text-align: center;
     object-fit: cover;
     margin-top: 1%;
@@ -49,9 +49,8 @@
 
 .design2{
     width: 103%;
-    height: 200px;
+    height: fit-content;
     margin-left: 3%;
-    margin-bottom: 3%;
     text-align: center;
     object-fit: cover;
     margin-top: 3%;
@@ -146,9 +145,9 @@ button:hover{
 }
 
 .design3{
-    width: 98%;
-    height: 440px;
-    margin-left: -30px;
+    width: 74%;
+    height: fit-content;
+    margin-left: 12%;
     margin-bottom: 10%;
     text-align: center;
     object-fit: cover;
@@ -167,7 +166,6 @@ button:hover{
     width: 102%;
     height: fit-content;
     margin-left: 3%;
-    margin-bottom: 10%;
     text-align: center;
     object-fit: cover;
     margin-top: 3%;

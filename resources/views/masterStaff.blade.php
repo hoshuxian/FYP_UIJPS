@@ -32,7 +32,7 @@ body{
    margin-bottom: 0;
    z-index: 2;
    margin-top: 25%;
-   margin-left: -18%;
+   margin-left: -17%;
    transform: rotate(90deg);
    object-fit: cover;
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
@@ -109,7 +109,7 @@ body{
     border-radius: 50%;
     border: 6px solid white;
     transition: 0.5s;
-    margin-left: 5px;
+    margin-left: -3px;
     z-index: -4;
 }
 
@@ -151,32 +151,37 @@ body{
 }
 
 .navigation ul li:nth-child(2).active ~ .indicator{
-    transform: translateX(calc(65px * 1));
+    transform: translateX(calc(63px * 1));
     background: #ffa117;
 }
 
 .navigation ul li:nth-child(3).active ~ .indicator{
-    transform: translateX(calc(68px * 2));
+    transform: translateX(calc(63px * 2));
     background: #FDD017;
 }
 
 .navigation ul li:nth-child(4).active ~ .indicator{
-    transform: translateX(calc(70px * 3));
+    transform: translateX(calc(63px * 3));
     background: #0fc70f;
 }
 
 .navigation ul li:nth-child(5).active ~ .indicator{
-    transform: translateX(calc(69px * 4));
+    transform: translateX(calc(61px * 4));
     background: #2196f3;
 }
 
 .navigation ul li:nth-child(6).active ~ .indicator{
-    transform: translateX(calc(70px * 5));
+    transform: translateX(calc(62px * 5));
     background: #4B0082;
 }
 
 .navigation ul li:nth-child(7).active ~ .indicator{
-    transform: translateX(calc(71px * 6));
+    transform: translateX(calc(62px * 6));
+    background: #b145e9;
+}
+
+.navigation ul li:nth-child(8).active ~ .indicator{
+    transform: translateX(calc(62px * 7));
     background: #CD66FF;
 }
 @keyframes animate{
@@ -460,6 +465,13 @@ color: #1DC4E7;
                 <span class="text">Manage Blacklist</span>  
             </a>
         </li>
+
+        <li class="list">
+            <a href="/report" style="--clr:#b145e9;">
+                <span class="icon"><ion-icon name="bar-chart-outline"></span>
+                <span class="text">Student offer report</span>  
+            </a>
+</li>
 
         <li class="list">
             <a href="{{ url('/logout') }}" style="--clr:#CD66FF;">

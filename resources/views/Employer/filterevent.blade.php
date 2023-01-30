@@ -196,11 +196,11 @@
 </div>
 </form>
 <br>
-<form action="/newevent" method="GET" >
+<form action="#" method="GET" >
 <div class="eventlist">
 @foreach($deta as $detaa)
 <div class="name">
-<a href="/showevent/{{ $detaa->id}}">{{$detaa->event_name}}</button></a>
+<a href="/showcareerevent/{{ $detaa->id}}">{{$detaa->event_name}}</button></a>
 </div>
   <br>
   <div class="description">
@@ -222,7 +222,6 @@
         </section>
 <br><br>
 <div class=" mt-1">
-<input class="mt-1"type="submit" name="new" value="Create New Event"></a>
 </div>
 <br><br><br>
 </div>

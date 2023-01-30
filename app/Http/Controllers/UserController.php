@@ -601,9 +601,9 @@ function rate(Request $req)
                 $mark->muet_mark = '0';
             }else if($mark->muet === 3){
                 $mark->muet_mark = '5';
-            }elseif($mark->muet >= 4 && $mark->muet <= 5){
+            }else if($mark->muet >= 4 && $mark->muet <= 5){
                 $mark->muet_mark = '8';
-            }else{
+            }else if($mark->muet >5) {
                 $mark->muet_mark = '10';
             }
 
@@ -612,9 +612,9 @@ function rate(Request $req)
                 $mark->language_mark = '0';
             }else if($mark->language === 2){
                 $mark->language_mark = '5';
-            }elseif($mark->language >= 3 && $mark->language <= 4){
+            }else if($mark->language >= 3 && $mark->language <= 4){
                 $mark->language_mark = '8';
-            }else{
+            }else if($mark->language >4){
                 $mark->language_mark = '10';
             }
 
@@ -623,9 +623,9 @@ function rate(Request $req)
                 $mark->position_mark = '0';
             }else if($mark->clubposition === 1){
                 $mark->position_mark = '5';
-            }elseif($mark->clubposition === 2){
+            }else if($mark->clubposition === 2){
                 $mark->position_mark = '8';
-            }else{
+            }else if($mark->clubposition >2){
                 $mark->position_mark = '10';
             }
 
@@ -634,9 +634,9 @@ function rate(Request $req)
                 $mark->experience_mark = '0';
             }else if($mark->jobexperience === 1){
                 $mark->experience_mark = '5';
-            }elseif($mark->jobexperience === 2){
+            }else if($mark->jobexperience === 2){
                 $mark->experience_mark = '8';
-            }else{
+            }else if($mark->jobexperience >2){
                 $mark->experience_mark = '10';
             }
 
@@ -645,9 +645,9 @@ function rate(Request $req)
                 $mark->cert_mark = '0';
             }else if($mark->extracert === 1){
                 $mark->cert_mark = '5';
-            }elseif($mark->extracert === 2){
+            }else if($mark->extracert === 2){
                 $mark->cert_mark = '8';
-            }else{
+            }else if($mark->extracert > 2){
                 $mark->cert_mark = '10';
             }
 
@@ -656,9 +656,9 @@ function rate(Request $req)
                 $mark->cgpa_mark = '0';
             }else if($mark->cgpa >= 2 && $mark->cgpa < 3.33){
                 $mark->cgpa_mark = '5';
-            }elseif($mark->cgpa >= 3.33 && $mark->cgpa <= 3.67){
+            }else if($mark->cgpa >= 3.33 && $mark->cgpa <= 3.67){
                 $mark->cgpa_mark = '8';
-            }else{
+            }else if($mark->cgpa >3.67){
                 $mark->cgpa_mark = '10';
             }
 
@@ -671,9 +671,9 @@ function rate(Request $req)
                 $deta->standard = 'D';
             }else if($mark->totalmark >= 4 && $mark->totalmark <= 6){
                 $deta->standard = 'C';
-            }elseif($mark->totalmark >= 7 && $mark->totalmark <= 8){
+            }else if($mark->totalmark >= 7 && $mark->totalmark <= 8){
                 $deta->standard = 'B';
-            }else{
+            }else if($mark->totalmark > 8){
                 $deta->standard = 'A';
             }
 
@@ -709,88 +709,88 @@ function rating(Request $req)
 
             $mark = studentratingscale::find($result);
 
-            //muet mark
-            if($mark->muet >= 1 && $mark->muet <= 2){
-                $mark->muet_mark = '0';
-            }else if($mark->muet === 3){
-                $mark->muet_mark = '5';
-            }elseif($mark->muet >= 4 && $mark->muet <= 5){
-                $mark->muet_mark = '8';
-            }else{
-                $mark->muet_mark = '10';
-            }
+           //muet mark
+           if($mark->muet >= 1 && $mark->muet <= 2){
+            $mark->muet_mark = '0';
+        }else if($mark->muet === 3){
+            $mark->muet_mark = '5';
+        }else if($mark->muet >= 4 && $mark->muet <= 5){
+            $mark->muet_mark = '8';
+        }else if($mark->muet >5) {
+            $mark->muet_mark = '10';
+        }
 
-            //language
-            if($mark->language === 1){
-                $mark->language_mark = '0';
-            }else if($mark->language === 2){
-                $mark->language_mark = '5';
-            }elseif($mark->language >= 3 && $mark->language <= 4){
-                $mark->language_mark = '8';
-            }else{
-                $mark->language_mark = '10';
-            }
+        //language
+        if($mark->language === 1){
+            $mark->language_mark = '0';
+        }else if($mark->language === 2){
+            $mark->language_mark = '5';
+        }else if($mark->language >= 3 && $mark->language <= 4){
+            $mark->language_mark = '8';
+        }else if($mark->language >4){
+            $mark->language_mark = '10';
+        }
 
-            //position
-            if($mark->clubposition === 0){
-                $mark->position_mark = '0';
-            }else if($mark->clubposition === 1){
-                $mark->position_mark = '5';
-            }elseif($mark->clubposition === 2){
-                $mark->position_mark = '8';
-            }else{
-                $mark->position_mark = '10';
-            }
+        //position
+        if($mark->clubposition === 0){
+            $mark->position_mark = '0';
+        }else if($mark->clubposition === 1){
+            $mark->position_mark = '5';
+        }else if($mark->clubposition === 2){
+            $mark->position_mark = '8';
+        }else if($mark->clubposition >2){
+            $mark->position_mark = '10';
+        }
 
-              //Job Experience
-              if($mark->jobexperience === 0){
-                $mark->experience_mark = '0';
-            }else if($mark->jobexperience === 1){
-                $mark->experience_mark = '5';
-            }elseif($mark->jobexperience === 2){
-                $mark->experience_mark = '8';
-            }else{
-                $mark->experience_mark = '10';
-            }
+          //Job Experience
+          if($mark->jobexperience === 0){
+            $mark->experience_mark = '0';
+        }else if($mark->jobexperience === 1){
+            $mark->experience_mark = '5';
+        }else if($mark->jobexperience === 2){
+            $mark->experience_mark = '8';
+        }else if($mark->jobexperience >2){
+            $mark->experience_mark = '10';
+        }
 
-            //Self-development
-            if($mark->extracert === 0){
-                $mark->cert_mark = '0';
-            }else if($mark->extracert === 1){
-                $mark->cert_mark = '5';
-            }elseif($mark->extracert === 2){
-                $mark->cert_mark = '8';
-            }else{
-                $mark->cert_mark = '10';
-            }
+        //Self-development
+        if($mark->extracert === 0){
+            $mark->cert_mark = '0';
+        }else if($mark->extracert === 1){
+            $mark->cert_mark = '5';
+        }else if($mark->extracert === 2){
+            $mark->cert_mark = '8';
+        }else if($mark->extracert > 2){
+            $mark->cert_mark = '10';
+        }
 
-            //CGPA
-            if($mark->cgpa <2){
-                $mark->cgpa_mark = '0';
-            }else if($mark->cgpa >= 2 && $mark->cgpa < 3.33){
-                $mark->cgpa_mark = '5';
-            }elseif($mark->cgpa >= 3.33 && $mark->cgpa <= 3.67){
-                $mark->cgpa_mark = '8';
-            }else{
-                $mark->cgpa_mark = '10';
-            }
+        //CGPA
+        if($mark->cgpa <2){
+            $mark->cgpa_mark = '0';
+        }else if($mark->cgpa >= 2 && $mark->cgpa < 3.33){
+            $mark->cgpa_mark = '5';
+        }else if($mark->cgpa >= 3.33 && $mark->cgpa <= 3.67){
+            $mark->cgpa_mark = '8';
+        }else if($mark->cgpa >3.67){
+            $mark->cgpa_mark = '10';
+        }
 
-            $mark->totalmark = ($mark->muet_mark *(30/100))+ ($mark->language_mark *(20/100)) + ($mark->position_mark*(15/100)) + ($mark->experience_mark*(15/100)) + ($mark->cert_mark *(10/100)) + ($mark->cgpa_mark*(10/100));
-            
-            $deta = student::find($result);
+        $mark->totalmark = ($mark->muet_mark *(30/100))+ ($mark->language_mark *(20/100)) + ($mark->position_mark*(15/100)) + ($mark->experience_mark*(15/100)) + ($mark->cert_mark *(10/100)) + ($mark->cgpa_mark*(10/100));
+        
+        $deta = student::find($result);
 
-             //total mark
-             if($mark->totalmark >= 0 && $mark->totalmark <= 3){
-                $deta->standard = 'D';
-            }else if($mark->totalmark >= 4 && $mark->totalmark <= 6){
-                $deta->standard = 'C';
-            }elseif($mark->totalmark >= 7 && $mark->totalmark <= 8){
-                $deta->standard = 'B';
-            }else{
-                $deta->standard = 'A';
-            }
+         //total mark
+         if($mark->totalmark >= 0 && $mark->totalmark <= 3){
+            $deta->standard = 'D';
+        }else if($mark->totalmark >= 4 && $mark->totalmark <= 6){
+            $deta->standard = 'C';
+        }else if($mark->totalmark >= 7 && $mark->totalmark <= 8){
+            $deta->standard = 'B';
+        }else if($mark->totalmark > 8){
+            $deta->standard = 'A';
+        }
 
-            $deta->update();
+        $deta->update();
             
             return redirect('showstdprofile')->with('successMsg','Rating Successful created !');
             }

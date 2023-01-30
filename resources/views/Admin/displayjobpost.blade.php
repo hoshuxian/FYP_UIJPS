@@ -162,15 +162,15 @@ height:20%;
 <div class="container2">
 @foreach(Session::get('result') as $detaa)
 <input type="hidden" class="text" placeholder="Company's ID" value="{{ $detaa->id}}"name="id" >
+@endforeach
     <img class="background_img" src="/nobackground.jfif" id="background"/>
+    @foreach($deta as $detaa)
 @if($detaa->company_logo)
         <img src="{{$detaa->company_logo}}" name="image" class="emp_pic" id="image"><h2 style="padding-left:23%;margin-top:-9%;" class="name">{{$detaa->company_name}}<br><br></h2>
 @else
     <img class="emp_pic" src="/nologo.png" name="image"id="image"/>
 @endif
-@endforeach
 <br>
-@foreach($deta as $detaa)
 <form action='/updatepost/{{ $detaa->post_id}}' method='get'enctype="multipart/form-data">
 @csrf
 <p style="color:red;font-size: 30px;float:right;margin-top:-9%;">{{$detaa->job_salary}}</p>
@@ -197,7 +197,7 @@ height:20%;
 @foreach($deta as $detaa)
 <br><h3>Benefits & Others:</h3><br>
 <p>{{$detaa->job_benefit}} </p><br>
-<a href="/viewjobpost"> <button type="button" class="button" value="back" style="margin-left:80%;" >BACK</button></a>
+<a href="/viewalljobpost"> <button type="button" class="button" value="back" style="margin-left:80%;" >BACK</button></a>
 @if(session()->has('successMsg'))
 <div class="alert alert-success">
      {{ session()->get('successMsg') }}

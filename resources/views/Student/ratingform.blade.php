@@ -445,12 +445,6 @@ section form .form-control button[type="button"]:hover {
             <p class="p1">Trust Us</p>
             <i class="fa fa-envelope"></i>
 <iframe src='https://my.spline.design/untitled-04106cf20c93dae480a1b3aeb7364979/' frameborder='0' width='100%' height='100%'></iframe>-->
-  @if(!empty($successMsg))
-                        <div class="alert alert-danger" id="successMsg"> {{ $successMsg }}</div>
-                    @endif
-                    @if(!empty($failedMsg))
-                        <div class="alert alert-danger" id="failedMsg"> {{ $failedMsg }}</div>
-                    @endif
   <section>
   <div class="owl">
         <div class="hand"></div>
@@ -466,6 +460,7 @@ section form .form-control button[type="button"]:hover {
             <img src="/rate.jpg" alt="" />
           </div>
           <div class="form-box">
+            
             <form action='rating' id="studentsignupform"method='post'enctype="multipart/form-data">
               @csrf
               <div class="form-control">

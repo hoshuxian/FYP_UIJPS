@@ -6,7 +6,7 @@
         <style>
 .box{
     width: 70%;
-    height: 1400px;
+    height: fit-content;
     margin-left: 15%;
     margin-bottom: 3%;
     text-align: center;
@@ -31,9 +31,9 @@
 
 .design1{
     width: 74%;
-    height: 250px;
+    height: fit-content;
     margin-left: 12%;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
     text-align: center;
     object-fit: cover;
     margin-top: 1%;
@@ -49,9 +49,8 @@
 
 .design2{
     width: 103%;
-    height: 200px;
+    height: fit-content;
     margin-left: 3%;
-    margin-bottom: 10%;
     text-align: center;
     object-fit: cover;
     margin-top: 3%;
@@ -146,13 +145,13 @@ button:hover{
 }
 
 .design3{
-    width: 98%;
+    width: 74%;
     height: 300px;
-    margin-left: -30px;
+    margin-left: 12%;
     margin-bottom: 10%;
     text-align: center;
     object-fit: cover;
-    margin-top: 15%;
+    margin-top: 5%;
     border-radius: 20px;
     object-fit: cover;
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
@@ -227,6 +226,8 @@ table th{
             <div style="margin-left:1%;" class="company_description">
         {{$detaa->company_description}}<br><br>
             </div>
+</div>
+</div>
             <div class="design3">
                 <div class="design4">
                 <h2 class="description"> COMPANY INFORMATION</h2><br><br>

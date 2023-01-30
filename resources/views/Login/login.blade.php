@@ -429,6 +429,7 @@ section form .form-control select:focus {
                 </div>
                 <a href="/forgetpassword"><span>Forgot Password?</span></a>
                 <input type="Submit" value="Login" id="loginBtn" />
+               <a href="/signup"><span> Do not have account? Sign up here.</span></a>
               </div>
             </form>
           </div>

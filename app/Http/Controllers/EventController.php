@@ -163,7 +163,7 @@ function showevent($id)
 
 {
     $result = event::select('*')->where('id', '=', $id)->get();
-    return view('\Employer\showevent', ['result' => $result]);
+    return view('\Employer\showcareerevent', ['result' => $result]);
 }
 
 function editevent($id)

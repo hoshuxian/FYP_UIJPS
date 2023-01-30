@@ -145,7 +145,39 @@ table th,td{
     padding-left: 10px;
     color: #cc0000;
 }
+
+.deco{
+    z-index:-1;
+    object-fit: cover;
+    position: absolute;
+    width:18%;
+    height:12%;
+    margin-left: 38%;
+    margin-top: -5%;
+    transform: rotate(-10deg);
+}
+
+form .button{
+	height: 45px;
+  margin-top: 15px;
+  margin-left: 3%;
+  margin-bottom: 15px;
+  width: 120px;
+  background: white;
+  border: 3px solid #F3C301;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 35px;
+  letter-spacing: 1px;
+
+}
+button:hover{
+  background: #F3C301;
+  border: 3px solid white;
+}
 </style>
+<h1 style="text-align:center;">Applicants List</h1>
+<img src="/deco1.png" class="deco" id="deco"> 
 <div class="items-controller">
                 <h4>Show</h4>
                 <select name="" id="itemperpage">
@@ -177,6 +209,8 @@ table th,td{
     </div>
 @endif
 @foreach($deta as $detaa)
+<form action='/displaypost/{{ $detaa->post_id}}' method='get'enctype="multipart/form-data">
+@csrf
 <tbody>
   <tr>
   <td>{{$detaa->std_matric}}</td>
@@ -199,8 +233,10 @@ table th,td{
             </div>
         </section>
 <br><br>
-
+<button type="submit" class="button" value="back" style="margin-left:80%;height: 45px;margin-top: 15px;margin-bottom: 15px;width: 120px;background: white;border: 3px solid #F3C301;font-size: 18px;font-weight: 500;border-radius: 35px;letter-spacing: 1px;"> BACK</button>
+</form>
 </div>
+
 
 
 <script>
